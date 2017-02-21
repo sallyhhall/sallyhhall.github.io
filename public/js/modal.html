@@ -1,0 +1,110 @@
+<script type="text/javascript">
+PINE.createNeedle("modal", function(modal) {
+
+		//	
+	modal.addAttArg("exitOut", "exitOnOutClick", "boolean", true);
+	modal.addAttArg("fade", ["modalFade", "fade"], "id")
+
+
+	modal.addInitFn(function() {
+		this.currentlyShowing = false;
+	})
+
+
+	modal.FNS.hideModal = function() {
+		var job = this;
+		if(job.currentlyShowing == false)
+			return;
+
+		job.currentlyShowing = false;
+
+		job.domNode.classList.remove("shown_overlay");
+
+		if(job.attArg.fade !== undefined) 
+			job.attArg.fade.classList.remove("shown_overlay");
+	}
+
+	modal.FNS.showModal = function() {
+		var job = this;
+		var initMe = job.domNode;
+		var fade = job.attArg.fade;
+
+		console.log("fade", fade);
+
+		if(job.currentlyShowing == true)
+			return;
+
+		job.currentlyShowing = true;
+			//
+		initMe.classList.add("shown_overlay");
+
+		if(fade !== undefined) 
+			fade.classList.add("shown_overlay");
+
+		if(job.attArg.exitOut) {
+			var mouseupFunc = function(event) {
+				if(initMe == event.target || initMe.contains(event.target)) return;	
+				initMe.FNS.hideModal();
+				document.removeEventListener('keyup', onKeyup, false);
+				document.removeEventListener('mouseup', mouseupFunc, false);
+			}
+			document.addEventListener('mouseup', mouseupFunc);
+
+			var onKeyup = function(event) {
+				console.log(event.key);
+				if(event.key == "Escape") {
+					initMe.FNS.hideModal();
+					document.removeEventListener('keyup', onKeyup, false);
+					document.removeEventListener('mouseup', mouseupFunc, false);
+				}
+			}
+			document.addEventListener('keyup', onKeyup);
+		}
+	};
+});
+</script>
+
+
+ 
+
+<!-- OVERLAY INLINE DEF -->
+
+<style>
+modal {
+	display: none;
+	position: fixed;
+	z-index: 100;
+	left: 50%;
+	top: 50%;
+	opacity: 0;
+	transform: translateX(-50%) translateY(-50%);
+	transition: opacity ease 2s;
+}
+
+.shown_overlay {
+	display: block;
+	animation: fade_in_overlay ease 0.5s forwards;
+}
+
+@keyframes fade_in_overlay {
+	0% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 1;
+	}
+}
+
+fade {
+	display: none;
+	/*pointer-events: none;*/
+	position: fixed;
+	top: 0px;
+	left: 0px;
+	width: 100%;
+	height: 100%;
+	z-index: 99;
+	opacity: 0;
+	transition: opacity ease 2s;
+}
+</style>
