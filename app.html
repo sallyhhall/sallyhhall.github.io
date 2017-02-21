@@ -35,7 +35,7 @@
 <body>
 
 	<overlay></overlay>
-	<header></header>
+	<topbar></topbar>
 
 	<!-- <view src="public/modules/page_home.html" defaultChangeSrcTarget></view> -->
 	<view id="main_view" src="public/modules/page_get_data.html" defaultChangeSrcTarget></view>
@@ -83,7 +83,7 @@
 		}
 
 
-		header {
+		topbar {
 			display: block;
 			position: fixed;
 			top: 0px;
@@ -94,6 +94,12 @@
 			border-bottom: 1px solid #bababa;
 			z-index: 150;
 		}
+
+				topbar timebox {
+				background-image: url("public/images/icon_dollar.png");	
+				background-size: 150px;
+				background-position: center 100px;
+			}
 
 		datausage {
 			display: block;
@@ -144,6 +150,8 @@
 						font-size: 49px;
 						vertical-align: top;
 					}
+
+
 
 		bottombar {
 			position: fixed;
