@@ -2,8 +2,6 @@
 
 <getdata>
 
-
-
 	<h1>Get more data for the month</h1>
 	Purchase more data for the month
 
@@ -58,6 +56,8 @@
   		El.byID("purchaseGb").textContent = gb;
 
   		DATAMETER.limit += gb;
+
+  		document.body.classList.add("enoughData");
   	}
 
 

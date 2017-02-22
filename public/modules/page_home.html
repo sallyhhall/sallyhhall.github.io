@@ -2,7 +2,7 @@
 <datausage>
 	<warning>You are at risk for going over your data limit</warning>
 	<view src="odometer.html"></view>
-	<rationing>You have only <b id="gbleft_number">2 Gb</b> of data to use for the next <b>9 days</b> of your billing cycle.</rationing>
+	<rationing>You have <span class="emphasis">only</span> <b id="gbleft_number">2 Gb</b> of data to use for the next <b>9 days</b> of your billing cycle.</rationing>
 </datausage>
 <options>
 	<row changesrc="public/modules/page_get_data.html">Get more data for the month</row>
@@ -18,12 +18,17 @@
 
 <style type="text/css">
 
-	body {
+	.enoughData warning {
 		/*background-color: red;*/
+		display: none;
+	}
+
+	.enoughData .emphasis {
+		display: none;
 	}
 	
 	overlay {
-		/*background-image: url("public/images/screen_home.png");*/
+		background-image: url("public/images/screen_home.png");
 	}
 
 
@@ -42,7 +47,7 @@
 			warning, rationing {
 				display: block;
 			    text-align: center;
-			    color: red;
+			    color: #ef6778;
 			}
 
 				warning {
@@ -54,6 +59,10 @@
 					font-size: 14px;
 					padding: 4px 14%;
 				}
+
+					.enoughData rationing {
+						color: inherit;
+					}
 
 
 		options {
