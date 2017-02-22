@@ -13,6 +13,7 @@
 			var main_view = El.byID("main_view");
 			var homenav = El.byID("homenav");
 			var datanav = El.byID("datanav");
+			var page_title=El.byID("page_title")
 
 			main_view.addEventListener("viewChange", function(event) {
 				var url = event.detail.url;
@@ -23,10 +24,13 @@
 
 				if(url.indexOf("page_home") !== -1) {
 					homenav.classList.add("current_page");
+					page_title.textContent="Home";
 				}
 				else if(url.indexOf("page_get_data") !== -1) {
 					datanav.classList.add("current_page");
+					page_title.textContent="Get more data";
 				}
+
 			})
 		});
 	</script>
@@ -35,7 +39,9 @@
 <body>
 
 	<overlay></overlay>
-	<topbar></topbar>
+	<topbar>
+		<span id="page_title">Home</span>
+	</topbar>
 
 	<!-- <view src="public/modules/page_home.html" defaultChangeSrcTarget></view> -->
 	<view id="main_view" src="public/modules/page_get_data.html" defaultChangeSrcTarget></view>
@@ -84,22 +90,29 @@
 
 
 		topbar {
+			text-align: center;
+			padding-top: 25px;
 			display: block;
 			position: fixed;
 			top: 0px;
 			left: 0px;
 			height: 65px;
 			width: 100%;
+			background-image: url("public/images/icon_timebox.png");	
+			background-position: top;
 			background-color: #f9f9f9;
 			border-bottom: 1px solid #bababa;
 			z-index: 150;
 		}
 
-				topbar timebox {
-				background-image: url("public/images/icon_dollar.png");	
-				background-size: 150px;
-				background-position: center 100px;
-			}
+			/*topbar timebox {
+				background-image: url("public/images/icon_timebox.png");	
+				background-size: 15px;
+				top: 0px;
+				left: 0px;
+				height: 65px;
+				width: 100%;
+			}*/
 
 		datausage {
 			display: block;
@@ -217,6 +230,12 @@
 
 			bottombar accountnav::before {
 				background-image: url("public/images/icon_account.png");	
+				background-size: 21px;
+				background-position: center 6px;
+			}
+
+			bottombar timebox::before {
+				background-image: url("public/images/icon_timebox.png");	
 				background-size: 21px;
 				background-position: center 6px;
 			}
