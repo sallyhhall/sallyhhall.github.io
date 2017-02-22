@@ -9,6 +9,8 @@
 	<needle src="public/js/modal.html"></needle>
 
 	<script type="text/javascript">
+		var DATAMETER = {};
+
 		PINE.ready(function(){
 			var main_view = El.byID("main_view");
 			var homenav = El.byID("homenav");
@@ -23,6 +25,8 @@
 
 				if(url.indexOf("page_home") !== -1) {
 					homenav.classList.add("current_page");
+					
+					window.setTimeout(DATAMETER.update, 20);
 				}
 				else if(url.indexOf("page_get_data") !== -1) {
 					datanav.classList.add("current_page");
@@ -38,7 +42,7 @@
 	<topbar></topbar>
 
 	<!-- <view src="public/modules/page_home.html" defaultChangeSrcTarget></view> -->
-	<view id="main_view" src="public/modules/page_get_data.html" defaultChangeSrcTarget></view>
+	<view id="main_view" src="public/modules/page_home.html" defaultChangeSrcTarget></view>
 
 
 	<bottombar>
@@ -65,11 +69,13 @@
 		font-family: arial;
 		padding-top: 65px;
 		color: #6f6f6f;
+		padding-bottom: 57px;
 	}
 
 
 		overlay {
-			display: block;
+			/*display: block;*/
+			display: none;
 			position: fixed;
 			background-position: top;
 			background-size: 100% auto;
@@ -101,56 +107,7 @@
 				background-position: center 100px;
 			}
 
-		datausage {
-			display: block;
-			background-color: #969;
-			opacity: 0.2;
-			height: 320px;
-		}
-
-		options {
-			display: block;
-			padding-left: 36px;
-		}
-
-			options > row:first-child {
-				border-top: 1px solid #e0e0e1;
-			}
-
-			options > row {
-				display: block;
-				background-color: white;
-				
-				border-bottom: 1px solid #e0e0e1;
-				padding: 17px 0px 17px 1px;
-
-				background-image: url("public/images/arrow_right.jpg");
-				background-position: right 20px center;
- 				background-size: 2.8% auto;
-			}
-
-
-				.billing {
-					/*opacity: 0.7;*/
-					padding-top: 25px;
-					padding-bottom: 21px;
-					background-image: none;
-				}
-
-					.billing duedate {
-						display: inline-block;
-						font-size: 19px;
-						width: 182px;
-					}
-
-					.billing dueamount {
-						position: relative;
-						top: -6px;
-						display: inline-block;
-						font-size: 49px;
-						vertical-align: top;
-					}
-
+		
 
 
 		bottombar {

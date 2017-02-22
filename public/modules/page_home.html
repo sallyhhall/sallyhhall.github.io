@@ -1,6 +1,8 @@
 
 <datausage>
-	
+	<warning>You are at risk for going over your data limit</warning>
+	<view src="odometer.html"></view>
+	<rationing>You have only <b id="gbleft_number">2 Gb</b> of data to use for the next <b>9 days</b> of your billing cycle.</rationing>
 </datausage>
 <options>
 	<row changesrc="public/modules/page_get_data.html">Get more data for the month</row>
@@ -21,6 +23,80 @@
 	}
 	
 	overlay {
-		background-image: url("public/images/screen_home.png");
+		/*background-image: url("public/images/screen_home.png");*/
 	}
+
+
+		datausage {
+			display: block;
+			/*background-color: #969;*/
+			/*opacity: 0.2;*/
+			/*height: 320px;*/
+		}
+
+			odometer {
+				margin: 0px 9%;
+				margin-bottom: 20px;
+			}
+
+			warning, rationing {
+				display: block;
+			    text-align: center;
+			    color: red;
+			}
+
+				warning {
+					font-size: 17px;
+					padding: 4px 20%;
+				}
+
+				rationing {
+					font-size: 14px;
+					padding: 4px 14%;
+				}
+
+
+		options {
+			display: block;
+			padding-left: 36px;
+		}
+
+			options > row:first-child {
+				border-top: 1px solid #e0e0e1;
+			}
+
+			options > row {
+				display: block;
+				background-color: white;
+				
+				border-bottom: 1px solid #e0e0e1;
+				padding: 17px 0px 17px 1px;
+
+				background-image: url("public/images/arrow_right.jpg");
+				background-position: right 20px center;
+ 				background-size: 2.8% auto;
+			}
+
+
+				.billing {
+					/*opacity: 0.7;*/
+					padding-top: 25px;
+					padding-bottom: 21px;
+					background-image: none;
+				}
+
+					.billing duedate {
+						display: inline-block;
+						font-size: 19px;
+						width: 182px;
+					}
+
+					.billing dueamount {
+						position: relative;
+						top: -6px;
+						display: inline-block;
+						font-size: 49px;
+						vertical-align: top;
+					}
+
 </style>

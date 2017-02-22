@@ -1,0 +1,151 @@
+
+<!-- <head>
+	<link rel="stylesheet" type="text/css" href="public/css/init.css">
+	<script src="public/js/PINE_Core_4.8.js"></script>
+</head>
+ -->
+
+<odometer>
+	<unitline>
+		<lowerlimit>0 gb</lowerlimit>
+		<upperlimit>0 gb</upperlimit>
+	</unitline>
+	<guageline id="guageline"></guageline>
+
+	<fillparent>
+		<gbleft>
+			<h1 id="gbleft_percent">80%</h1>
+			GB used
+		</gbleft>
+
+		<dayleft>
+			<h1>9</h1>
+			days left in billing cycle
+		</dayleft>
+	</fillparent>	
+</odometer>
+
+
+
+<script>
+
+DATAMETER.limit = 10;
+DATAMETER.amount = 8;
+DATAMETER.update = function() {
+	var ratio = DATAMETER.amount/DATAMETER.limit;
+
+	var deg = -1* (180-(180*ratio));
+	// var guage = document.getElementsByTagName("guageline")[0];
+	var guage = El.firstOfTag(document.body, "guageline");
+	
+
+	guage.style.transform = "rotate("+deg+"deg)";
+
+	El.byId("gbleft_percent").textContent = ~~(ratio * 100) + "%";
+	El.byId("gbleft_number").textContent = (DATAMETER.limit - DATAMETER.amount) + "GB";
+
+	El.firstOfTag(document.body, "upperlimit").textContent = DATAMETER.limit + " gb";
+}
+
+DATAMETER.update();
+</script>
+
+
+<style type="text/css">
+	odometer {
+		position: relative;
+		display: block;
+		max-width: 500px;
+		/*padding-bottom: 8%;*/
+		/*padding: 3%;*/
+		text-align: center;
+	}
+
+		unitline {
+			display: inline-block;
+			width: 90%;
+			/*padding-left: 90%;*/
+
+			padding-top: 52%;
+			background-image: url("public/images/datameter_arch.png");
+			background-size: 100% auto;
+			background-position: top left;
+		}
+
+			unitline > * {
+				display: block;
+				position: absolute;
+				width: 15%;
+				top: 86%;
+				text-align: center;
+				font-size: 10px;
+			}			
+
+				unitline lowerlimit {
+					left: 0%;
+				}
+
+				unitline upperlimit {
+					right: 0%;
+				}
+
+
+		guageline {
+			display: block;
+			position: absolute;
+			padding-left: 51%;
+			padding-top: 11%;
+			left: 45.5%;
+			top: 73%;
+			background-image: url("public/images/datameter_gauge_line.png");
+			background-size: 100% auto;
+			background-position: top left;
+
+			transform: rotate(-180deg);
+			transform-origin:  8.8%;
+			transition: transform 1s ease;
+		}
+
+
+		fillparent {
+			position: absolute;
+			display: block;
+			top: 0px;
+			left: 0px;
+			right: 0px;
+			bottom: 0px;
+		}
+
+			gbleft, dayleft {
+				display: block;
+				text-align: center;
+			}
+
+			gbleft {
+				margin-top: 11%;
+				font-size: 12px;
+			}
+
+				gbleft h1 {
+					font-size: 38px;
+					font-weight: lighter;
+				}
+
+
+			dayleft {
+				/*top: 60%;*/
+				position: absolute;
+				width: 100%;
+				padding: 0% 35%;
+				top: 75%;
+				/*margin: 0% 35%;*/
+				/*margin-top: 50%;*/
+				font-size: 11px;
+
+			}
+
+				dayleft h1 {
+					font-size: 18px;
+					margin-bottom: 4%;
+				}
+</style>
